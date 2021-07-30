@@ -41,12 +41,9 @@ const Home = ({data}:{data : Products[]}): JSX.Element => {
 
 export default Home
 
-
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await axios.get<Products[]>('http://localhost:8000/products?_limit=3')
-  console.log(data)
+  const { data } = await axios.get<Products[]>('http://localhost:8000/products')
   return { props: { data } }
 }
 
-
-// lista apenas 3 produtos  através do static generation
+// static generation

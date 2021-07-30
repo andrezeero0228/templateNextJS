@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Typography } from '@material-ui/core'
 // import Products from './feature/products/index'
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next'
 import axios from 'axios'
 import { Person } from 'schema-dts'
 import React from 'react'
@@ -41,12 +41,10 @@ const Home = ({data}:{data : Products[]}): JSX.Element => {
 
 export default Home
 
-
-export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await axios.get<Products[]>('http://localhost:8000/products?_limit=3')
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { data } = await axios.get<Products[]>('http://localhost:8000/products')
   console.log(data)
   return { props: { data } }
 }
 
-
-// lista apenas 3 produtos  através do static generation
+// server side rendering
